@@ -1,3 +1,5 @@
+# coding utf-8
+
 from django.db import models
 
 # Create your models here.
@@ -8,7 +10,5 @@ class Cliente(models.Model):
     email = models.EmailField(blank=True)
     
     def __unicode__(self):
-        return self.nome
-        
-from django.contrib import admin
-admin.site.register(Cliente)
+        return self.nome + ' (' + self.fone + ')'
+
