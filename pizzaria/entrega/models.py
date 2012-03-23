@@ -12,7 +12,7 @@ class Cliente(models.Model):
     logradouro = models.CharField(max_length=32, db_index=True)
     numero = models.PositiveIntegerField(u'número')
     complemento = models.CharField(max_length=32, blank=True)
-    obs = models.TextField(u'observação')
+    obs = models.TextField(u'observação', blank=True)
 
     class Meta:
         unique_together = ('fone', 'ramal')
