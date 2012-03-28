@@ -24,3 +24,21 @@ class Cliente(models.Model):
         return u'%s, %s' % (self.logradouro, self.numero)
     endereco.short_description = u'Endereço'
     
+    
+    
+class Pedido(models.Model):
+    inclusao = models.DateTimeField(auto_now_add=True)
+    cliente = models.ForeignKey(Cliente)
+    pronto = models.BooleanField(default=False)
+    entregador = models.ForeignKey('Entregador', null=True, blank=True)
+    partida = models.TimeField(null=True, blank=True)
+
+class Entregador(models.Model):
+    nome = models.CharField(max_length=64)
+    
+    def __unicode__(self):
+        return self.nome
+        
+    class Meta:
+        verbose_name_plural = u'Entregadores'
+

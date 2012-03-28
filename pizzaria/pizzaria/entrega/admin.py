@@ -1,7 +1,7 @@
 # coding: utf-8
         
 from django.contrib import admin
-from .models import Cliente
+from .models import Cliente, Pedido, Entregador
 
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('fone', 'nome', 'endereco')
@@ -9,4 +9,13 @@ class ClienteAdmin(admin.ModelAdmin):
     search_fields = ['fone', 'nome', 'logradouro']
     list_filter = ('logradouro',)
     
+class PedidoAdmin(admin.ModelAdmin):
+    list_display = ('hora_inclusao', 'cliente', 'pronto')
+    
+    def hora_inclusao(self, obj):
+        return obj.inclusao.strftime('%HH:%MM')
+    
+    
 admin.site.register(Cliente, ClienteAdmin)
+admin.site.register(Pedido, PedidoAdmin)
+admin.site.register(Entregador)
