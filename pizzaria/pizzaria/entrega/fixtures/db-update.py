@@ -83,14 +83,30 @@ class JsonUpdate(object):
 
 
 
-def update_json(filename):
+def update_json(filename, field, value):
     print '-'*60
     print 'atualizando ', filename
+    print 'atualizando ', fields
+    
+    json_content = []
+    with open(os.path.join(os.path.dirname(__file__), filename)) as f:
+        json_content = json.load(f)
+        
+    print json_content
+    
+    list_fields = fields.split(',')
+    print list_fields
+    
+    updater = JsonUpdate( json )
+    updater.addNewField(('ramal', ''))
+    
+    
     
 parser = argparse.ArgumentParser(description='json update')
-parser.add_argument('filename', help='file name')
+parser.add_argument('filename', help='file name ex: customer.json')
+parser.add_argument('fields', help='fields ex: ("obs","")')
 
 args = parser.parse_args()
-update_json(args.project)
+update_json(args.filename, args.fields)
 
 
