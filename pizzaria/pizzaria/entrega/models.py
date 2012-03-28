@@ -20,3 +20,7 @@ class Cliente(models.Model):
     def __unicode__(self):
         return self.nome + ' (' + self.fone + ')'
 
+    def endereco(self):
+        return u'%s, %s' % (self.logradouro, self.numero)
+    endereco.short_description = u'Endereço'
+    
