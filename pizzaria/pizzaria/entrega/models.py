@@ -16,9 +16,13 @@ class Cliente(models.Model):
 
     class Meta:
         unique_together = ('fone', 'ramal')
+        ordering = ['fone', 'ramal']
     
     def __unicode__(self):
-        return self.nome + ' (' + self.fone + ')'
+        fone = self.fone
+        if self.ramal:
+            fone += ' r.' + self.ramal
+        return fone + ' - ' + self.nome
 
     def endereco(self):
         return u'%s, %s' % (self.logradouro, self.numero)
