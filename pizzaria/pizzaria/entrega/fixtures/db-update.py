@@ -68,6 +68,9 @@ class JsonUpdate(object):
     def addNewField(self, newfield):
         self._fields.append(newfield)
         
+    def fields(self, list_fields):
+        self._fields = list_fields
+        
     def updateJson(self):
         for item in self._json:
             fields = item["fields"]
@@ -81,32 +84,60 @@ class JsonUpdate(object):
 
 
 
-
-
-def update_json(filename, field, value):
+def update_json(filename, fields_filename):
     print '-'*60
     print 'atualizando ', filename
-    print 'atualizando ', fields
+    print 'atualizando ', fields_filename
     
     json_content = []
-    with open(os.path.join(os.path.dirname(__file__), filename)) as f:
-        json_content = json.load(f)
+    with open(os.path.join(os.path.dirname(__file__), filename)) as f1:
+        json_content = json.load(f1)
+        
+    json_fields = []
+    with open(os.path.join(os.path.dirname(__file__), fields_filename)) as f2:
+        json_fields = json.load(f2)
         
     print json_content
+    print '------------'
+    print json_fields
     
-    list_fields = fields.split(',')
-    print list_fields
     
-    updater = JsonUpdate( json )
-    updater.addNewField(('ramal', ''))
+    
     
     
     
 parser = argparse.ArgumentParser(description='json update')
 parser.add_argument('filename', help='file name ex: customer.json')
-parser.add_argument('fields', help='fields ex: ("obs","")')
+parser.add_argument('fields', help='file name with new fields content like: ["campo1": "valor", "campo2": "valor"]')
 
 args = parser.parse_args()
 update_json(args.filename, args.fields)
+
+
+
+
+
+
+
+
+
+
+
+
+
+converter dict para list:
+dict = {}
+dict['Capital']="London"
+dict['Food']="Fish&Chips"
+dict['2012']="Olympics"
+
+#lists
+temp = []
+dictList = []
+
+#My attempt:
+for key, value in dict.iteritems():
+    temp = [key,value]
+    dictlist.append(temp)
 
 
