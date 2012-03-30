@@ -1,0 +1,19 @@
+dicas
+
+- procurar por django admin site
+
+
+-tenho uma tabela usuario:
+quero criar atributos extras em mexer na usuario.
+Posso criar uma tabela profile com um relacionamento OneToOne para usuario
+e ganho de brinde em usuario.profile
+
+
+
+
+sistema docs do python
+------------------------
+pip install sphinx
+
+git clone https://github.com/acpy/modulo3.git
+dentro de docs: make html
