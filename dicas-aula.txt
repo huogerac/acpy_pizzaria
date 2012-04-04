@@ -17,3 +17,81 @@ pip install sphinx
 
 git clone https://github.com/acpy/modulo3.git
 dentro de docs: make html
+
+
+
+
+
+
+
+
+from pizzaria.entrega.models import *
+
+clientes = Cliente.objects.filter(logradouro='Rua Fidalga')
+
+for cli in clientes:
+  print cli.id
+    for pedido in cli.pedido_set.all():
+      print '\t', pedido.id
+
+
+mas fazendo um
+>>> from django.db import connection
+>>> q = connection.queries
+
+percebe-se que existe um select para cada item do for.
+
+for pizza in Pizza.objects.all():
+  print pizza.pedido.id
+
+para cada linha tem que buscar o pedido
+
+p.s:
+pode-se utilizar
+for pizza in Pizza.objects.all():
+  print pizza.pedido_id        #utiliza apenas o ID e nao busca o objeto pedido
+
+
+DICA:
+Utilizando .id com select_related (JOIN): 
+
+for pizza in Pizza.objects.all().select_related('pedido'):
+  print pizza.pedido.id, '->', pizza
+
+RUIM
+for pizza in Pizza.objects.all().select_related('pedido'):
+  print pizza.pedido.cliente.nome, pizza.pedido.id, '->', pizza
+
+DICA: (+JOIN)
+for pizza in Pizza.objects.all().select_related('pedido', 'pedido__cliente'):
+  print pizza.pedido.cliente.nome, pizza.pedido.id, '->', pizza
+
+
+
+
+
+
+def lq()
+  global q
+  db.reset_queries()
+  q = db.connection.queries()
+  
+
+print Pedido.objects.all().query #mostra a query que sera executada
+
+
+>>> '-'.join(['a','b','c'])  # a-b-c
+
+
+3 coisas q uma ling de template deve fazer
+- interpolar     cliente = $cliente
+- interar        for cliente in clientes
+- condicional    if status
+
+trocar render_to_response por render
+
+links:
+https://docs.djangoproject.com/en/1.4/faq/
+https://docs.djangoproject.com/en/1.4/topics/http/shortcuts/
+
+
