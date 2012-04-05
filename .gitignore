@@ -1,2 +1,5 @@
 *.pyc
 *.sqlite
+.project
+.pydevproject
+.settings
