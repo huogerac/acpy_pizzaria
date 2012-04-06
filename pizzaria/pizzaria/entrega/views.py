@@ -5,23 +5,19 @@ from django.http import HttpResponse
 import datetime
 
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 from .models import Pizza
 
-def hora_atual(request):
-
+#nao utilizado
+def hora_atual_na_unha(request):
     agora = datetime.datetime.now()
     html = '<html><h1> Hora: {0}</h1></html>'.format(agora)
-    #html = '<html><h1>' + str(agora) + '</h1></html>'
-
     return HttpResponse(html)
     
-    
-    
+#nao utilizado    
 def pizzas_pendentes_na_unha(request):
-
     listagem = []
-    
     for pizza in Pizza.objects.all():
         listagem.append(unicode(pizza))
     listagem = u'\n'.join(listagem)
@@ -32,6 +28,18 @@ def pizzas_pendentes_na_unha(request):
     return HttpResponse(html)
     
     
+class HoraView(TemplateView):
+    template_name = 'entrega/hora.html'
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(HoraView, self).get_context_data(**kwargs)
+        context['hora_certa'] = datetime.datetime.now()
+        return context
+
+
+
+
 
 
 def pizzas_pendentes(request):
