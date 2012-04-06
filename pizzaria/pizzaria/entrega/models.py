@@ -28,8 +28,10 @@ class Cliente(models.Model):
         return u'%s, %s' % (self.logradouro, self.numero)
     endereco.short_description = u'Endereço'
     
+    @models.permalink
     def get_absolute_url(self):
-        return 'clientes/' + str(self.id)
+        #return 'clientes/%s/' % self.id
+        return ('ficha-cli', (), {'pk': self.id})
     
     
     

@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     
     url(r'clientes$', ListView.as_view(model=Cliente, context_object_name='lista')),    
     
-    url(r'clientes/(?P<pk>\d+)/$', DetailView.as_view(model=Cliente, context_object_name='cliente')),
-    
+    url(r'clientes/(?P<pk>\d+)/$', 
+        DetailView.as_view(model=Cliente, context_object_name='cliente'), name='ficha-cli'),
+
 )
