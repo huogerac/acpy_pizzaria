@@ -93,5 +93,11 @@ trocar render_to_response por render
 links:
 https://docs.djangoproject.com/en/1.4/faq/
 https://docs.djangoproject.com/en/1.4/topics/http/shortcuts/
+http://aptana.com/
+
+para procurar por views genericas: procurar por class-based-views:
+https://docs.djangoproject.com/en/dev/topics/class-based-views/
+https://docs.djangoproject.com/en/dev/ref/class-based-views/
+
 
 
