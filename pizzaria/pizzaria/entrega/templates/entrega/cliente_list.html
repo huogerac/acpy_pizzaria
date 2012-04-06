@@ -3,7 +3,9 @@
 		<title>Clientes</title>
 		<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
 	</head>
-  <body>
+	
+
+  <body class="change-list">
     <h1>Lista de clientes</h1>
 
 	<div class="results">
@@ -17,7 +19,9 @@
 	        {% for cliente in lista %}
 	
 		    	<tr class="{% cycle 'row1' 'row2' %}">	
-		    		<td>{{cliente.id}}</td>
+		    		<td>
+		    			<a href="{{ cliente.get_absolute_url }}">{{cliente.id}}</a>
+		    		</td>
 		    		<td>{{cliente.nome}}</td>
 		    		<td>{{cliente.endereco}}</td>
 		    	</tr>

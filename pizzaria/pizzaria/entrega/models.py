@@ -28,6 +28,9 @@ class Cliente(models.Model):
         return u'%s, %s' % (self.logradouro, self.numero)
     endereco.short_description = u'Endereço'
     
+    def get_absolute_url(self):
+        return 'clientes/' + str(self.id)
+    
     
     
 class Pedido(models.Model):
