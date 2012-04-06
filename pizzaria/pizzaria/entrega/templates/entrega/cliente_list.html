@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Clientes</title>
+		<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+	</head>
+  <body>
+    <h1>Lista de clientes</h1>
+
+	<div class="results">
+	 	<table id="result_list">    
+	    	<tr>
+	    		<td>id</td>
+	    		<td>nome</td>
+	    		<td>endereco</td>
+	    	</tr>
+	    	
+	        {% for cliente in lista %}
+	
+		    	<tr class="{% cycle 'row1' 'row2' %}">	
+		    		<td>{{cliente.id}}</td>
+		    		<td>{{cliente.nome}}</td>
+		    		<td>{{cliente.endereco}}</td>
+		    	</tr>
+		    {% endfor %}
+	    	
+	    </table>
+	</div>
+    
+  </body>
+
+</html>
