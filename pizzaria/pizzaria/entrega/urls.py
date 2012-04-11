@@ -11,7 +11,9 @@ urlpatterns = patterns('',
     #url(r'pizzas$', pizzas_pendentes, name='pizzas'),
     url(r'pizzas$', ListView.as_view(model=Pizza, context_object_name='lista')),
     
-    url(r'clientes$', ListView.as_view(model=Cliente, context_object_name='lista')),    
+    url(r'clientes$', ListView.as_view(model=Cliente, 
+                                       context_object_name='lista'),
+                                       name='lista-cliente'),    
     
     url(r'clientes/(?P<pk>\d+)/$', 
         DetailView.as_view(model=Cliente, context_object_name='cliente'), name='ficha-cli'),
