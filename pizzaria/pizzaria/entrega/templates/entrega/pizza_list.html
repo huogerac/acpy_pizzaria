@@ -1,4 +1,29 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+
+    <h1>Lista de pizzas</h1>
+    
+    <ol>
+      {% for pizza in lista %}
+        <li>{{pizza}}</li>
+      {% endfor %}
+    </ol>
+    
+    <div>
+    	<img src="{{ STATIC_URL }}pizza.png" width="120" />
+    </div>  
+
+{% endblock %}
+
+
+<!--
 <html>
+
+  <head>
+		<title>Pizzas</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basico.css" />
+  </head>
 
   <body>
     <h1>Lista de pizzas</h1>
@@ -16,3 +41,4 @@
   </body>
 
 </html>
+-->
