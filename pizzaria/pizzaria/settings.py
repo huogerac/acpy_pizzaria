@@ -4,7 +4,9 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 import os.path
-PROJECT_DIR = os.path.abspath(os.path.curdir)
+
+# __file__ indica o arquivo atual, no caso settings.py
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
