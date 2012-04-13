@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import ListView, DetailView
 
-from .views import HoraView, pizzas_pendentes, cadastro, pedido_pronto
+from .views import HoraView, pizzas_pendentes, cadastro, pedido_pronto, cliente_obs
 from .models import Pizza, Cliente
 
 urlpatterns = patterns('',
@@ -25,5 +25,8 @@ urlpatterns = patterns('',
     url(r'novocli/$', cadastro, name='cadastro-novo'),
     
     url(r'pedido_pronto/$', pedido_pronto, name='pedido-pronto'),
+    
+    url(r'cliente_obs/$', cliente_obs, name='cliente-obs'),
+    
     
 )

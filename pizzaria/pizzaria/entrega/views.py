@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 
 from .models import Pizza, Pedido
-from .forms import ClienteModelForm
+from .forms import ClienteModelForm, ObservacaoClienteForm
 
 #nao utilizado
 def hora_atual_na_unha(request):
@@ -80,4 +80,15 @@ def pedido_pronto(request):
 
     print '-----------------> feito'    
     return HttpResponseRedirect(reverse('lista-pizzas'))
-        
+
+
+def cliente_obs(request):
+    if request.method == 'POST':
+        formulario = ObservacaoClienteForm(request.POST)
+        if formulario.is_valid():
+            cliente_id = request.POST.get('cliente_id')
+            
+            cliente = Cliente.objects.get(pk=cliente_id)
+            cliente.obs = formulario.cleaned_data['obs']
+            cliente.save()
+    return HttpResponseRedirect(reverse('ficha-cli'))
