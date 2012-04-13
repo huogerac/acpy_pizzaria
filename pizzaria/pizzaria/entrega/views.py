@@ -1,13 +1,15 @@
 # coding: utf-8
 # Create your views here.
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import datetime
 
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.core.urlresolvers import reverse
 
 from .models import Pizza
+from .forms import ClienteModelForm
 
 #nao utilizado
 def hora_atual_na_unha(request):
@@ -50,3 +52,19 @@ def pizzas_pendentes(request):
         {"lista": lista_de_pizzas},
         content_type="text/html")
 
+
+
+def cadastro(request):
+    if request.method == 'POST':
+        formulario = ClienteModelForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            #TODO: usar reverse 
+            #return HttpResponseRedirect('/ent/clientes')
+            return HttpResponseRedirect(reverse('lista-cliente'))
+    else:
+        formulario = ClienteModelForm()
+        
+    return render(request, 'entrega/cadastro.html',
+                  {'formulario': formulario})
+        
