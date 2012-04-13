@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 
-from .models import Pizza
+from .models import Pizza, Pedido
 from .forms import ClienteModelForm
 
 #nao utilizado
@@ -47,6 +47,7 @@ class HoraView(TemplateView):
 def pizzas_pendentes(request):
 
     lista_de_pizzas = Pizza.objects.all()
+    #lista_de_pizzas = Pizza.objects.order_by('pedido_id').all()
     
     return render(request, 'entrega/pizzas.html', 
         {"lista": lista_de_pizzas},
@@ -67,4 +68,16 @@ def cadastro(request):
         
     return render(request, 'entrega/cadastro.html',
                   {'formulario': formulario})
+    
+    
+    
+def pedido_pronto(request):
+    if request.method == 'POST':
+        pedido_id = request.POST.get('pedido_id')
+        pedido = Pedido.objects.get(pk=pedido_id)
+        pedido.pronto = True
+        pedido.save()
+
+    print '-----------------> feito'    
+    return HttpResponseRedirect(reverse('lista-pizzas'))
         

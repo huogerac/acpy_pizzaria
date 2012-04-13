@@ -4,41 +4,28 @@
 
     <h1>Lista de pizzas</h1>
     
-    <ol>
+    <table border="1">
       {% for pizza in lista %}
-        <li>{{pizza}}</li>
+    	<tr>
+    		<td>{{ forloop.counter }}</td>
+    		<td>{{pizza}}</td>
+    		<td>{{pizza.pedido_id}}</td>
+    		<td>
+    			<form action="{%  url pedido-pronto %}" method="POST">
+    				{% csrf_token %}
+    				<input type="hidden" name="pedido_id" value="{{pizza.pedido_id}}" />
+    				<input type="submit" value="pedido {{pizza.pedido_id}} pronto" name="feita" />
+    				
+    			</form>
+    			
+    		</td>
+    	</tr>
       {% endfor %}
-    </ol>
+    	
+    </table>
     
     <div>
     	<img src="{{ STATIC_URL }}pizza.png" width="120" />
     </div>  
 
 {% endblock %}
-
-
-<!--
-<html>
-
-  <head>
-		<title>Pizzas</title>
-		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/basico.css" />
-  </head>
-
-  <body>
-    <h1>Lista de pizzas</h1>
-    
-    <ol>
-      {% for pizza in lista %}
-        <li>{{pizza}}</li>
-      {% endfor %}
-    </ol>
-    
-    <div>
-    	<img src="{{ STATIC_URL }}pizza.png" width="120" />
-    </div>    
-    
-  </body>
-
-</html>
--->
